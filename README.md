@@ -1,5 +1,5 @@
 # Trip-Advisor
-Trip Advisor is a web application made in python and MongoDB using Flask Framework.  
+Trip Advisor is a web application made in Python and MongoDB using Flask Web Framework.  
 This is a hotel and flight booking application.
 
 ## How to run
