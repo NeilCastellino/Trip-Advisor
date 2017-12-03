@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Travel Advisor</title>
+    <link rel="shortcut icon" type="img/png" href="{{ url_for('static', filename='img/travel_logo.png') }}">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="{{ url_for('home') }}" class="navbar-brand">
+            <img src="{{ url_for('static', filename='img/travel_logo.png') }}" alt="Brand" height="20" width="20">
+          </a>
+                <a class="navbar-brand" href="{{ url_for('home') }}">Travel Advisor</a>
+            </div>
+            <div id="navbar" class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ url_for('hotels.index') }}">Hotels</a></li>
+                    <li><a href="{{ url_for('flights.index') }}">Flights</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="{{ url_for('home') }}">Home</a></li>
+                    <li><a href="{{ url_for('users.contact_us') }}">Contact</a></li>
+                    {% if session['email'] %}
+                    <li><a href="{{ url_for('users.user_dashboard') }}" id="dashboard"><span class="glyphicon glyphicon-tasks"></span>  Dashboard</a></li>
+                    <li><a href="{{ url_for('users.logout_user') }}"><span class="glyphicon glyphicon-log-out"></span>  Logout</a></li>
+                    {% else %}
+                    <li><a href="{{ url_for('users.register_user') }}" id="new_user">Register</a></li>
+                    <li><a href="{{ url_for('users.login_user') }}" id="old_user">Login</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </nav>
+    <div class="container-fluid carousal_edit">
+        <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+            <ol class="carousel-indicators">
+                <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+                <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+            </ol>
+            <div class="carousel-inner" role="listbox">
+                <div class="item active">
+                    <img alt="First slide" style="width: 100%;" src="{{ url_for('static', filename='img/main.jpg') }}">
+                    <div class="carousel-caption" id="css_shadow">
+                        <h1>Travel Advisor</h1>
+                        <h3>We make your holidays Awesome!</h3>
+                    </div>
+                </div>
+                <div class="item">
+                    <img style="width:100%;" src="{{ url_for('static', filename='img/hotel.jpg') }}" alt="Second slide">
+                    <div class="carousel-caption">
+                        <h1>Hotels</h1>
+                        <br>
+                        <a role="button" class="btn btn-lg btn-default" href="{{ url_for('hotels.index') }}">Check out more</a>
+                    </div>
+                </div>
+                <div class="item">
+                    <img style="width:100%;" src="{{ url_for('static', filename='img/flight.jpg') }}" alt="Second slide">
+                    <div class="carousel-caption">
+                        <h1>Flights</h1>
+                        <br>
+                        <a role="button" class="btn btn-lg btn-default" href="{{ url_for('flights.index') }}">Check out more</a>
+                    </div>
+                </div>
+            </div>
+            <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+          <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+            <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+          <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+        </div>
+    </div>
+    <section id="portfolio" class="bg-light-gray">
+        <div class="container">
+            <div class="page-header">
+                <h1 align="center">Booking</h1></div>
+            <br>
+            <br>
+            <div class="row">
+                <div class="col-md-6 portfolio-item">
+                    <img src="{{ url_for('static', filename='img/hotel2.jpg') }}" class="img-responsive" alt="">
+                    <div class="portfolio-caption">
+                        <h4>Hotels</h4>
+                        <br>
+                        <a class="btn btn-lg btn-primary" href="{{ url_for('hotels.index') }}">Book</a>
+                    </div>
+                </div>
+                <div class="col-md-6 portfolio-item">
+                    <img src="{{ url_for('static', filename='img/airplane.jpg') }}" class="img-responsive" alt="">
+                    <div class="portfolio-caption">
+                        <h4>Flights</h4>
+                        <br>
+                        <a class="btn btn-lg btn-primary" href="{{ url_for('flights.index') }}">Book</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="container">
+            <p class="text-muted">Travel Advisor &copy; 2017</p>
+        </div>
+    </footer>
+</body>
+
+</html>
