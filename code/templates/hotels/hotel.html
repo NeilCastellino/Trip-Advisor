@@ -51,13 +51,13 @@
     <div class="page-header">
         <h1 align="center">Hotel: <small>{{ hotel.name }}</small></h1>
     </div>
+    {% if session['email'] in config.ADMINS %}
     <div class="panel panel-default">
         <div class="panel-body">
-            {% if session['email'] in config.ADMINS %}
             <a href="{{ url_for('hotels.delete_hotel', hotel_id = hotel._id) }}" role="button" class="btn btn-danger">Permanently Delete Hotel</a> 
-            {% endif %}
         </div>
     </div>
+    {% endif %}
     </div>
     <footer class="footer fot">
         <div class="container">
