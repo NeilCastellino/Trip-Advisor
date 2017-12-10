@@ -47,6 +47,24 @@
     </nav>
     <br>
     <br>
+    {% if session['email'] in config.ADMINS %}
+    <div class="container">
+        <div class="page-header">
+            <h1 align="center">Contact Us <small>- list of messages</small></h1>
+        </div>
+        {% for item in messages %}
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 align="center" class="list-group-item-heading">By {{ item.name }}</h3>
+            </div>
+            <div class="panel-body">
+                <p align="center" class="list-group-item-text">Email: {{ item.email }}</p>
+                <p align="center" class="list-group-item-text">Message: {{ item.message }}</p>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
@@ -108,9 +126,10 @@
         });
     }
     </script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=<API_KEY>&callback=initMap">
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXSkCBwf9QCG86CEZ_BJ9XiNc3ZHtgRYk&callback=initMap">
     </script>
-    <footer class="footer">
+    {% endif %}
+    <footer class="footer fot">
         <div class="container">
             <p class="text-muted">Travel Advisor &copy; 2017</p>
         </div>
