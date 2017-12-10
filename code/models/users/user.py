@@ -45,10 +45,6 @@ class User(object):
 	def save_to_mongo(self):
 		Database.update(UserConstants.COLLECTION, {'_id': self._id}, self.json())
 
-	@staticmethod
-	def save_contact(contact):
-		Database.insert(UserConstants.CONTACT, contact)
-
 	def json(self):
 		return {
 			"_id": self._id,
