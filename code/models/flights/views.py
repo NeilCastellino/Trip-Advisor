@@ -12,9 +12,9 @@ def index():
 	flights = Flight.all()
 	return render_template('flights/flight_index.html', flights=flights)
 
-@flight_blueprint.route('/flight_view/<string:airline_name>')
-def flight_page(airline_name):
-	flight = Flight.get_by_airline_id(airline_name)
+@flight_blueprint.route('/flight_view/<string:flight_id>')
+def flight_page(flight_id):
+	flight = Flight.get_by_id(flight_id)
 	return render_template("flights/flight.html", flight = flight)
 
 @flight_blueprint.route('/add_flights', methods=['GET', 'POST'])
