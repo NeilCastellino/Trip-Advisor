@@ -52,7 +52,7 @@
     <div class="panel panel-default">
         <div class="panel-body">
             {% if session['email'] in config.ADMINS %}
-            <a href="{{ url_for('flights.flight_page', airline_name = airline.name) }}" class="btn btn-primary">View Flights</a>
+            <a href="{{ url_for('flights.load_flights', airline_name = airline.name) }}" class="btn btn-primary">View Flights</a>
             <a href="{{ url_for('airlines.delete_airline', airline_id = airline._id) }}" class="btn btn-danger">Permanently Delete Airline</a>
             {% endif %}
         </div>
