@@ -1,2 +1,1 @@
 COLLECTION = "users"
-CONTACT = "contact"
