@@ -53,7 +53,7 @@
         </div>
         {% for flight in flights %}
         <div class="panel panel-info">
-            <a href="{{ url_for('flights.flight_page', airline_name = flight.airline_name) }}" class="list-group-item">
+            <a href="{{ url_for('flights.flight_page', flight_id = flight._id) }}" class="list-group-item">
                 <div class="panel-heading">
                     <h3 align="center" class="list-group-item-heading">{{ flight.plane_no }} <small> (Flight name)</small></h3></div>
             </a>
