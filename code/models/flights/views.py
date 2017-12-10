@@ -17,6 +17,11 @@ def flight_page(flight_id):
 	flight = Flight.get_by_id(flight_id)
 	return render_template("flights/flight.html", flight = flight)
 
+@flight_blueprint.route('/flight_load/<string:airline_name>')
+def load_flights(airline_name):
+	flights = Flight.get_by_airline_id(airline_name)
+	return render_template("flights/flights_load.html", flights = flights)
+
 @flight_blueprint.route('/add_flights', methods=['GET', 'POST'])
 @user_decorators.requires_login
 def flight_add():
