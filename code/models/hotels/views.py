@@ -15,8 +15,7 @@ def index():
 
 @hotel_blueprint.route('/hotel/<string:hotel_id>')
 def hotel_page(hotel_id):
-	user = User.find_by_email(session['email'])
-	return render_template('hotels/hotel.html', hotel = Hotel.get_by_id(hotel_id), user = user)
+	return render_template('hotels/hotel.html', hotel = Hotel.get_by_id(hotel_id))
 
 @hotel_blueprint.route('/delete/<string:hotel_id>')
 @user_decorators.requires_admin_permissions
