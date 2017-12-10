@@ -1,5 +1,6 @@
 from flask import Blueprint, request, session, url_for, render_template, redirect
 from werkzeug.utils import redirect
+from models.contacts.contact import Contact
 from models.users.user import User
 from models.hotels.hotel import Hotel
 from models.airlines.airline import Airline
@@ -62,6 +63,7 @@ def contact_us():
 			"email": email,
 			"message": message
 		}
-		User.save_contact(contact)
+		Contact.save_contact(contact)
 		return redirect(url_for('home'))
-	return render_template("users/contact.html")
+	messages = Contact.all_contacts()
+	return render_template("users/contact.html", messages = messages)
