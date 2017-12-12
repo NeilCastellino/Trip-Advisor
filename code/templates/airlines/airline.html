@@ -49,7 +49,7 @@
     <div class="page-header">
         <h1 align="center">Airline: <small>{{ airline.name }}</small></h1>
     </div>
-    <div class="panel panel-default">
+    <div class="panel panel-danger">
         <div class="panel-body">
             {% if session['email'] in config.ADMINS %}
             <a href="{{ url_for('flights.load_flights', airline_name = airline.name) }}" class="btn btn-primary">View Flights</a>

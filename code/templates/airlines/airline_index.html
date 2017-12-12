@@ -65,12 +65,12 @@
                 <p align="center" class="list-group-item-text">Bank Balance: {{ airline.bank_balance }}</p>
             </div>
         </div>
-        {% endfor %} 
+        {% endfor %}
         {% if session['email'] in config.ADMINS %}
         <a href="{{ url_for('airlines.create_airline') }}" class="btn btn-success">
-    <span class="glyphicon glyphicon-plus"></span> Create new
-    </a> 
-    {% endif %}
+            <span class="glyphicon glyphicon-plus"></span> Create new
+        </a> 
+        {% endif %}
     </div>
     <footer class="footer">
         <div class="container">
