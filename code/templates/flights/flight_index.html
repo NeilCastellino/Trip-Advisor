@@ -29,7 +29,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('hotels.index') }}">Hotels</a></li>
-                    <li><a href="{{ url_for('flights.index') }}">Flights</a></li>
+                    <li class="active"><a href="{{ url_for('flights.index') }}">Flights</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -62,7 +62,6 @@
                 <p align="center" class="list-group-item-text">Destination: {{ flight.destination }}</p>
                 <p align="center" class="list-group-item-text">Plane Timing: {{ flight.plane_timing }}</p>
                 <p align="center" class="list-group-item-text">Total Seats: {{ flight.total_seats }}</p>
-                <p align="center" class="list-group-item-text">Seats Booked: {{ flight.seats_booked }}</p>
                 <p align="center" class="list-group-item-text">Airline Name: {{ flight.airline_name }}</p>
                 <p align="center" class="list-group-item-text">Cost: Rs.{{ flight.price }}</p>
                 <br> 
