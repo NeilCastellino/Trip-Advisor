@@ -1,9 +1,10 @@
 import uuid
 from common.database import Database
 import models.hotels.constants as HotelConstants
+import models.hotels.errors as UserErrors
 
 class Hotel(object):
-	def __init__(self, name, email, password, address, ph_no, card_no, total_rooms, rooms_booked, price, bank_balance = 0, user_type = "hotel", _id = None):
+	def __init__(self, name, email, password, address, ph_no, card_no, total_rooms, rooms_booked, price, dates={}, bank_balance = 0, user_type = "hotel", _id = None):
 		self.name = name
 		self.email = email
 		self.password = password
@@ -15,6 +16,7 @@ class Hotel(object):
 		self.rooms_booked = int(rooms_booked)
 		self.price = float(price)
 		self.user_type = user_type
+		self.dates = dates
 		self._id = uuid.uuid4().hex if _id is None else _id
 
 	def __repr__(self):
@@ -33,7 +35,8 @@ class Hotel(object):
 			"total_rooms": self.total_rooms,
 			"rooms_booked": self.rooms_booked,
 			"price": self.price,
-			"user_type": self.user_type
+			"user_type": self.user_type,
+			"dates": self.dates
 		}
 
 	@classmethod
@@ -76,3 +79,7 @@ class Hotel(object):
 			"price": self.price,
 			"user_type": self.user_type
 		}
+
+	@staticmethod
+	def is_hotel_full():
+		raise UserErrors.HotelFull("Sorry! All the rooms are full")
