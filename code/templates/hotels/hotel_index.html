@@ -28,7 +28,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('hotels.index') }}">Hotels</a></li>
+                    <li class="active"><a href="{{ url_for('hotels.index') }}">Hotels</a></li>
                     <li><a href="{{ url_for('flights.index') }}">Flights</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -104,7 +104,6 @@
             <div class="panel-body">
                 <p align="center" class="list-group-item-text">Cost: Rs.{{ hotel.price }}</p>
                 <p align="center" class="list-group-item-text">Total rooms: {{ hotel.total_rooms }}</p>
-                <p align="center" class="list-group-item-text">Rooms booked: {{ hotel.rooms_booked }}</p>
                 <p align="center" class="list-group-item-text">Address: {{ hotel.address }}</p>
                 <p align="center" class="list-group-item-text">Email ID: {{ hotel.email }}</p>
                 <p align="center" class="list-group-item-text">Phone number: {{ hotel.ph_no }}</p>
