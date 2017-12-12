@@ -1,9 +1,10 @@
 from common.database import Database
 import models.flights.constants as FlightConstants
 import uuid
+import models.flights.errors as UserErrors
 
 class Flight(object):
-	def __init__(self, plane_no, source, destination, plane_timing, total_seats, seats_booked, airline_name, price = 0, _id = None):
+	def __init__(self, plane_no, source, destination, plane_timing, total_seats, seats_booked, airline_name, price, dates={}, _id = None):
 		self.plane_no = plane_no
 		self.source = source
 		self.destination = destination
@@ -12,6 +13,7 @@ class Flight(object):
 		self.seats_booked = int(seats_booked)
 		self.airline_name = airline_name
 		self.price = price
+		self.dates = dates
 		self._id = uuid.uuid4().hex if _id is None else _id
 
 	def __repr__(self):
@@ -30,7 +32,8 @@ class Flight(object):
 			"seats_booked": self.seats_booked,
 			"airline_name": self.airline_name,
 			"_id": self._id,
-			"price": self.price
+			"price": self.price,
+			"dates": self.dates
 		}
 
 	@classmethod
@@ -53,3 +56,7 @@ class Flight(object):
 	@classmethod
 	def all(cls):
 		return [cls(**elem) for elem in Database.find(FlightConstants.COLLECTION,{})]
+
+	@staticmethod
+	def is_flight_full():
+		raise UserErrors.FlightFull("Sorry! All the seats are full")

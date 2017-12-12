@@ -3,6 +3,7 @@ import uuid
 from models.airlines.airline import Airline
 from models.flights.flight import Flight
 from models.users.user import User
+import models.flights.errors as UserErrors
 import models.users.decorators as user_decorators
 
 flight_blueprint = Blueprint('flights', __name__)
@@ -33,7 +34,7 @@ def flight_add():
 		total_seats = int(request.form['total_seats'])
 		seats_booked = int(request.form['seats_booked'])
 		airline_name = request.form['airline_name']
-		price = float(request.form['price'])
+		price = int(request.form['price'])
 
 		Flight(plane_no, source, destination, plane_timing, total_seats, seats_booked, airline_name, price).save_to_mongo()
 		return redirect(url_for(".index"))
@@ -52,10 +53,29 @@ def flight_book(flight_id):
 		plane_no = flights.plane_no
 		price = float(flights.price)
 		tickets = int(request.form['rooms'])
+		date_from = request.form['date-from']
 		total = price * tickets
-		flights.seats_booked += tickets
 		airline_name = flights.airline_name
 		airline = Airline.get_by_name(airline_name)
+
+		if flights.total_seats <= tickets:
+			try:
+				Flight.is_flight_full()
+			except UserErrors.UserError as e:
+				return e.message
+
+		for k,v in flights.dates.items():
+			tr = 0
+			if k == date_from:
+				for m in flights.dates[k]:
+					for k,v in m.items():
+						tr += v
+						if flights.total_seats <= tr:
+							try:
+								Flight.is_flight_full()
+							except UserErrors.UserError as e:
+								return e.message
+
 		airline.bank_balance += total
 		flights.save_to_mongo()
 		airline.save_to_mongo()
@@ -69,5 +89,15 @@ def flight_book(flight_id):
 		user.orders = {uuid.uuid4().hex : order}
 		user.points_earned += (price/100)
 		user.save_to_mongo()
+
+		if date_from in flights.dates:
+			diction = {user.name: tickets}
+			flights.dates[date_from].append(diction)
+		else:
+			summary = {user.name: tickets}
+			flights.dates[date_from] = []
+			flights.dates[date_from].insert(0, summary)
+
+		flights.save_to_mongo()
 		return redirect(url_for('users.user_dashboard'))
 	return render_template('flight_book.html', flights = flights)
