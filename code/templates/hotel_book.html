@@ -28,7 +28,7 @@
             </div>
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url_for('hotels.index') }}">Hotels</a></li>
+                    <li class="active"><a href="{{ url_for('hotels.index') }}">Hotels</a></li>
                     <li><a href="{{ url_for('flights.index') }}">Flights</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
@@ -78,6 +78,20 @@
                             </div>
                             <br>
                             <div class="form-group">
+                                <label class="col-md-2 control-label" for="date-from">Date (from)</label>
+                                <div class="col-md-10">
+                                    <input id="date-from" name="date-from" type="date" class="form-control input_text" required autofocus>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="date-to">Date (to)</label>
+                                <div class="col-md-10">
+                                    <input id="date-to" name="date-to" type="date" class="form-control input_text" required>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
                                 <label class="col-md-2 control-label" for="days">Days</label>
                                 <div class="col-md-10">
                                     <input id="days" name="days" type="text" placeholder="Number of Days required" class="form-control input_text" required>
@@ -103,7 +117,7 @@
             </div>
         </div>
     </div>
-    <footer class="footer fot">
+    <footer class="footer">
         <div class="container">
             <p class="text-muted">Travel Advisor &copy; 2017</p>
         </div>

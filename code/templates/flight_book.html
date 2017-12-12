@@ -29,7 +29,7 @@
             <div id="navbar" class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li><a href="{{ url_for('hotels.index') }}">Hotels</a></li>
-                    <li><a href="{{ url_for('flights.index') }}">Flights</a></li>
+                    <li class="active"><a href="{{ url_for('flights.index') }}">Flights</a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{ url_for('home') }}">Home</a></li>
@@ -65,6 +65,13 @@
                                 <label class="col-md-2 control-label" for="price">Price</label>
                                 <div class="col-md-10">
                                     <input id="price" name="price" type="text" class="form-control input_text" value="{{ flights.price }}" disabled>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="form-group">
+                                <label class="col-md-2 control-label" for="date-from">Date</label>
+                                <div class="col-md-10">
+                                    <input id="date-from" name="date-from" type="date" class="form-control input_text" required>
                                 </div>
                             </div>
                             <br>
