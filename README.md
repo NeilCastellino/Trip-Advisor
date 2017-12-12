@@ -4,7 +4,7 @@ This is a hotel and flight booking application.
 
 ## How to run
 Step 1: Download the code  
-Step 2: Install Python 3 and MongoDB  
+Step 2: Download and install Python 3 (https://www.python.org/downloads/) and MongoDB (https://www.mongodb.com/download-center#community)  
 Step 3: Open a terminal and navigate to the folder outside the main code folder ie. code  
 Step 4: Run this command
 ```
