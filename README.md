@@ -23,7 +23,9 @@ Step 7: Install other libraries
 ```
 pip install flask datetime werkzeug passlib pymongo uuid
 ```
-Step 8: Run the app
+Step 8: Open another terminal and Run MongoDB.
+
+Step 9: Navigate out of the venv folder and into the code folder. Run the app.
 ```
 python run.py
 ```
